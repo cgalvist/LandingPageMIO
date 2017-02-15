@@ -5,18 +5,22 @@
     <md-content layout-padding flex ng-controller="toolbarCtrl">
 
         <md-list ng-cloak>
-            <md-subheader class="md-no-sticky">Páginas</md-subheader>
+            <md-subheader class="md-no-sticky">Industrias MIO</md-subheader>
             <md-list-item class="secondary-button-padding" ng-click="close()" ui-sref=".inicio">
-                <md-icon md-svg-icon="build/img/icons/home.svg"></md-icon>
+                <md-icon md-font-icon="fa-home" class="fa fa-fw"></md-icon>
                 <p>Inicio</p>
             </md-list-item>
             <md-list-item class="secondary-button-padding" ng-click="close()" ui-sref=".grupos">
-                <md-icon md-svg-icon="build/img/icons/group.svg"></md-icon>
-                <p>Grupos</p>
+                <md-icon md-font-icon="fa-star" class="fa fa-fw"></md-icon>
+                <p>Productos y Servicios</p>
             </md-list-item>
             <md-list-item class="secondary-button-padding" ng-click="close()" ui-sref=".acerca">
-                <md-icon md-svg-icon="build/img/icons/info.svg"></md-icon>
-                <p>Acerca de</p>
+                <md-icon md-font-icon="fa-book" class="fa fa-fw"></md-icon>
+                <p>Catálogo</p>
+            </md-list-item>
+            <md-list-item class="secondary-button-padding" ng-click="close()" ui-sref=".acerca">
+                <md-icon md-font-icon="fa-envelope" class="fa fa-fw"></md-icon>
+                <p>Contacto</p>
             </md-list-item>
         </md-list>
         <!--
@@ -34,12 +38,12 @@
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
             <md-button class="md-icon-button" aria-label="Toggle Menu" ng-click="toggleLeft()" hide-gt-sm="$mdMedia('gt-md')">
-                <md-icon md-svg-icon="build/img/icons/menu.svg"></md-icon>
+                <md-icon md-font-icon="fa-navicon" class="fa fa-fw"></md-icon>
             </md-button>
             <h2><span>Computación Gráfica</span></h2>
             <span flex></span>
             <md-button class="md-icon-button" aria-label="More">
-                <md-icon md-svg-icon="build/img/icons/more_vert.svg"></md-icon>
+                <md-icon md-font-icon="fa-ellipsis-v" class="fa fa-fw"></md-icon>
             </md-button>
         </div>
     </md-toolbar>

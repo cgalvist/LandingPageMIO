@@ -59,6 +59,16 @@ gulp.task('copy', function() {
       'node_modules/angular-material/angular-material.min.css'
     ])
         .pipe(gulp.dest('build/vendor/angular'))
+
+    gulp.src([
+            'node_modules/font-awesome/**',
+            '!node_modules/font-awesome/**/*.map',
+            '!node_modules/font-awesome/.npmignore',
+            '!node_modules/font-awesome/*.txt',
+            '!node_modules/font-awesome/*.md',
+            '!node_modules/font-awesome/*.json'
+        ])
+    .pipe(gulp.dest('build/vendor/font-awesome'))
 })
 
 /*
@@ -91,6 +101,7 @@ gulp.task("dev",["browserSync",'images','copy'], function() {
     gulp.watch('static/js/*.js', ['minify-js']);
 
     // recargar la página cuando los archivos HTML o JS cambien
-    gulp.watch('*.html', browserSync.reload);
+    gulp.watch('index.html', browserSync.reload);
+    gulp.watch('templates/**/*.html', browserSync.reload);
     gulp.watch('static/js/**/*.js', browserSync.reload);
 });

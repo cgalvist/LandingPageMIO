@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.18.8",
+    "font-awesome": "^4.7.0",
     "gulp-watch": "^4.3.10"
   }
 }
