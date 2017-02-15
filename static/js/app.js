@@ -24,21 +24,29 @@ angular.module("app",['ngMaterial','ui.router'])
             }
         })
 
-        .state('webCG.grupos', {
-            url: '/grupos',
+        .state('webCG.productos', {
+            url: '/productos',
             views: {
                 'contenidoMenu': {
-                    templateUrl: 'templates/grupos/grupos.html',
+                    templateUrl: 'templates/productos.html',
                 }
             }
         })
 
-        .state('webCG.acerca', {
-            url: '/acerca',
+        .state('webCG.catalogo', {
+            url: '/catalogo',
             views: {
                 'contenidoMenu': {
-                    templateUrl: 'templates/acerca.html',
-                    controller: 'acercaCtrl',
+                    templateUrl: 'templates/catalogo.html',
+                }
+            }
+        })
+
+        .state('webCG.contacto', {
+            url: '/contacto',
+            views: {
+                'contenidoMenu': {
+                    templateUrl: 'templates/contacto.html',
                 }
             }
         })
