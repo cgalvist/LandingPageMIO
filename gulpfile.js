@@ -11,32 +11,11 @@ var gulp = require('gulp'),
     pngcrush = require('imagemin-pngcrush'),
     watch = require('gulp-watch'),
     connect = require('gulp-connect');
+var browserSync = require('browser-sync').create();
 
 /*
  *  CONFIGURACION DE TAREAS DE GULP
 */
-
-/*
-    recargar la página automaticamente
-    cada vez que se haga un cambio en los archivos
-*/
-gulp.task('livereload', function() {
-    //gulp.src(['./**/*.*'])
-        //.pipe(watch(['./**/*.*']))
-        //.pipe(connect.reload());
-    gulp.src(['static/css/*.css','static/js/**/*.js','templates/**/*.html','index.html'])
-        .pipe(watch(['static/css/*.css','static/js/**/*.js','templates/**/*.html','index.html']))
-        .pipe(connect.reload());
-});
-
-/*
-    minimizar y copiar automaticamente
-    cada vez que se haga un cambio en los archivos
-*/
-gulp.task('watchBuildFiles', function () {
-    gulp.watch('static/js/**/*.js', ['minify-js']);
-    gulp.watch('static/css/**/*.css', ['minify-css']);
-});
 
 /*
     minimizacion y concatenacion de javascript
@@ -48,6 +27,9 @@ gulp.task('minify-js', function() {
             console.log(e);
          }))
         .pipe(gulp.dest('build/js/'))
+        .pipe(browserSync.reload({
+            stream: true
+        }))
 });
 
 /*
@@ -55,10 +37,13 @@ gulp.task('minify-js', function() {
 */
 
 gulp.task('minify-css', function () {
-  gulp.src('static/css/**/*.css')
-  .pipe(concat('style.min.css'))
-  .pipe(minifycss())
-  .pipe(gulp.dest('build/css/'))
+    gulp.src('static/css/**/*.css')
+        .pipe(concat('style.min.css'))
+        .pipe(minifycss())
+        .pipe(gulp.dest('build/css/'))
+        .pipe(browserSync.reload({
+            stream: true
+        }))
 });
 
 /*
@@ -90,25 +75,22 @@ gulp.task('images', function() {
 });
 
 /*
-    tarea para iniciar servidor
+    configurar browserSync
 */
-var cors = function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', '*');
-    next();
-};
-
-//desarrollo
-gulp.task('webserver', function() {
-    connect.server({
-        root: '.',
-        port: 8080,
-        livereload: true,
-        middleware: function () {
-            return [cors];
+gulp.task('browserSync', function() {
+    browserSync.init({
+        server: {
+            baseDir: ''
         },
-    });
-});
+    })
+})
 
 gulp.task("default",["minify-js","minify-css",'images','copy']);
-gulp.task("dev",["livereload","watchBuildFiles",'images','copy',"webserver"]);
+gulp.task("dev",["browserSync",'images','copy'], function() {
+    gulp.watch('static/css/*.css', ['minify-css']);
+    gulp.watch('static/js/*.js', ['minify-js']);
+
+    // recargar la página cuando los archivos HTML o JS cambien
+    gulp.watch('*.html', browserSync.reload);
+    gulp.watch('static/js/**/*.js', browserSync.reload);
+});

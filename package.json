@@ -31,7 +31,7 @@
     "imagemin-pngcrush": "^5.0.0"
   },
   "devDependencies": {
-    "gulp-livereload": "^3.8.1",
+    "browser-sync": "^2.18.8",
     "gulp-watch": "^4.3.10"
   }
 }
