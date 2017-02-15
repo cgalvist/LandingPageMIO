@@ -30,7 +30,7 @@ gulp.task('livereload', function() {
 });
 
 /*
-    minimizar automaticamente
+    minimizar y copiar automaticamente
     cada vez que se haga un cambio en los archivos
 */
 gulp.task('watchBuildFiles', function () {
@@ -56,7 +56,7 @@ gulp.task('minify-js', function() {
 
 gulp.task('minify-css', function () {
   gulp.src('static/css/**/*.css')
-  .pipe(concat('style.css'))
+  .pipe(concat('style.min.css'))
   .pipe(minifycss())
   .pipe(gulp.dest('build/css/'))
 });
@@ -66,11 +66,12 @@ gulp.task('minify-css', function () {
 */
 gulp.task('copy', function() {
     gulp.src([
-      'node_modules/angular/angular.js',
+      'node_modules/angular/angular.min.js',
       'node_modules/angular-ui-router/release/angular-ui-router.min.js',
-      'node_modules/angular-aria/angular-aria.js',
-      'node_modules/angular-animate/angular-animate.js',
-      'node_modules/angular-material/**/*'
+      'node_modules/angular-aria/angular-aria.min.js',
+      'node_modules/angular-animate/angular-animate.min.js',
+      'node_modules/angular-material/angular-material.min.js',
+      'node_modules/angular-material/angular-material.min.css'
     ])
         .pipe(gulp.dest('build/vendor/angular'))
 })
@@ -110,4 +111,4 @@ gulp.task('webserver', function() {
 });
 
 gulp.task("default",["minify-js","minify-css",'images','copy']);
-gulp.task("dev",["livereload","watchBuildFiles",'images',"webserver"]);
+gulp.task("dev",["livereload","watchBuildFiles",'images','copy',"webserver"]);
