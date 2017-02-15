@@ -1,7 +1,14 @@
 angular.module("app",['ngMaterial','ui.router'])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
+    // configurar tema de Angular Material
+    $mdThemingProvider.theme('customTheme')
+                   .primaryPalette('orange')
+                   .accentPalette('grey')
+                   .dark();
+
+    //configurar rutas de la pagina
     $urlRouterProvider.otherwise('webCG/inicio');
 
     $stateProvider
