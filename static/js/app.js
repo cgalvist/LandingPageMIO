@@ -1,6 +1,6 @@
-angular.module("app",['ngMaterial','ui.router'])
+var app = angular.module("app",['ngMaterial','ui.router']);
 
-.config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
     // configurar tema de Angular Material
     $mdThemingProvider.theme('customTheme')
@@ -13,7 +13,6 @@ angular.module("app",['ngMaterial','ui.router'])
 
     $stateProvider
 
-        // paginas prncipales
         .state('webCG', {
             url: '/webCG',
             abstract: true,
@@ -23,16 +22,22 @@ angular.module("app",['ngMaterial','ui.router'])
 
         .state('webCG.inicio', {
             url: '/inicio',
+            data: {
+                title: 'Inicio'
+            },
             views: {
                 'contenidoMenu': {
                     templateUrl: 'templates/inicio.html',
-                    controller: 'inicioCtrl',
+                    controller: 'inicioCtrl'
                 }
             }
         })
 
         .state('webCG.productos', {
             url: '/productos',
+            data: {
+                title: 'Productos y Servicios'
+            },
             views: {
                 'contenidoMenu': {
                     templateUrl: 'templates/productos.html',
@@ -42,6 +47,9 @@ angular.module("app",['ngMaterial','ui.router'])
 
         .state('webCG.catalogo', {
             url: '/catalogo',
+            data: {
+                title: 'Catálogo'
+            },
             views: {
                 'contenidoMenu': {
                     templateUrl: 'templates/catalogo.html',
@@ -51,45 +59,22 @@ angular.module("app",['ngMaterial','ui.router'])
 
         .state('webCG.contacto', {
             url: '/contacto',
+            data: {
+                title: 'Contacto'
+            },
             views: {
                 'contenidoMenu': {
                     templateUrl: 'templates/contacto.html',
                 }
             }
         })
-
-        // paginas de los grupos
-
-        //maquinaria
-        .state('webCG.maquinaria', {
-            url: '/grupos/maquinaria',
-            views: {
-                'contenidoMenu': {
-                    templateUrl: 'templates/grupos/maquinaria/inicio.html',
-                    controller: 'maquinariaCtrl',
-                }
-            }
-        })
-
-        //invernaderos
-        .state('webCG.invernaderos', {
-            url: '/grupos/invernaderos',
-            views: {
-                'contenidoMenu': {
-                    templateUrl: 'templates/grupos/invernaderos/inicio.html',
-                    controller: 'invernaderosCtrl',
-                }
-            }
-        })
-
-        //formaletas
-        .state('webCG.formaletas', {
-            url: '/grupos/formaletas',
-            views: {
-                'contenidoMenu': {
-                    templateUrl: 'templates/grupos/formaletas/inicio.html',
-                    controller: 'formaletasCtrl',
-                }
-            }
-        })
 });
+
+app.run(['$rootScope', '$state',
+        function ($rootScope, $state) {
+            $rootScope.$on('$stateChangeSuccess', function () {
+                $rootScope.title = $state.current.data.title;
+            });
+        }
+    ]
+);

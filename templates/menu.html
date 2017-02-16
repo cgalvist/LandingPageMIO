@@ -8,7 +8,9 @@
     <md-content layout-padding flex ng-controller="toolbarCtrl">
 
         <md-list ng-cloak>
+            <!--
             <md-subheader class="md-no-sticky">Industrias MIO</md-subheader>
+          -->
             <md-list-item class="secondary-button-padding" ng-click="close()" ui-sref=".inicio">
                 <md-icon md-font-icon="fa-home" class="fa fa-fw"></md-icon>
                 <p>Inicio</p>
@@ -43,7 +45,7 @@
             <md-button class="md-icon-button" aria-label="Toggle Menu" ng-click="toggleLeft()" hide-gt-sm="$mdMedia('gt-md')">
                 <md-icon md-font-icon="fa-navicon" class="fa fa-fw"></md-icon>
             </md-button>
-            <h2><span>Industrias MIO</span></h2>
+            <h2><span ng-bind="(title || 'Industrias MIO')"></span></h2>
             <span flex></span>
             <md-button class="md-icon-button" aria-label="More">
                 <md-icon md-font-icon="fa-ellipsis-v" class="fa fa-fw"></md-icon>
