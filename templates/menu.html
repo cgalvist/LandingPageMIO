@@ -1,6 +1,6 @@
 <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4">
     <md-toolbar class="md-theme-indigo">
-        <a class="docs-logo" ui-sref=".inicio">
+        <a class="docs-logo" ng-click="close()" ui-sref=".inicio">
             <img src="build/img/logos/mio.svg" alt="">
             <h1 class="docs-logotype md-heading ng-isolate-scope">Industrias MIO</h1>
         </a>
@@ -54,26 +54,28 @@
             </md-button>
         </div>
     </md-toolbar>
-    <md-content md-scroll-y layout="column" flex>
+    <md-content id="menu-content" md-scroll-y layout="column" flex>
         <div class="docs-ng-view" ng-view layout-padding flex="noshrink">
             <!-- Aquí inyectamos las vistas -->
             <div ui-view="contenidoMenu" class="doc-content" ng-view></div>
         </div>
 
-        <div layout="row" flex="noshrink" layout-align="center center">
-          <div id="license-footer" flex>
-            Powered by Google &copy;2014&#8211;{{thisYear}}.
-            Code licensed under the <a ng-href="./license"  class="md-accent">MIT License</a>.
-            Documentation licensed under
-            <a href="http://creativecommons.org/licenses/by/4.0/"  target="_blank" class="md-default-theme md-accent">CC BY 4.0</a>.
-          </div>
-        </div>
+        <div ng-controller="footerCtrl">
 
-        <md-button class="md-fab md-fab-bottom-right docs-scroll-fab scrolling"
-                   docs-scroll-class="scrolling"
-                   ng-click="scrollTop()"
-                   aria-label="Back to Top">
-          <md-icon md-font-icon="fa-angle-up" class="fa fa-2x"></md-icon>
-        </md-button>
+          <div layout="row" flex="noshrink" layout-align="center center">
+            <div id="license-footer" flex>
+              Industrias MIO &copy; {{thisYear}}.
+              Página desarrollada por:
+              <a href="http://www.cesargalvis.cf/"  target="_blank" class="md-default-theme md-accent">César Galvis</a>.
+            </div>
+          </div>
+
+          <md-button class="md-fab md-fab-bottom-right docs-scroll-fab scrolling"
+                     docs-scroll-class="scrolling"
+                     ng-click="scrollTop()"
+                     aria-label="Back to Top">
+              <md-icon md-font-icon="fa-angle-up" class="fa fa-2x"></md-icon>
+          </md-button>
+        </div>
     </md-content>
 </div>

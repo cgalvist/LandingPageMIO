@@ -58,4 +58,14 @@ angular.module('app')
     };
 }])
 
+// controlador del footer
+.controller('footerCtrl', ['$scope', '$window', function($scope, $window) {
+
+    $scope.thisYear = new Date().getFullYear();
+
+    $scope.scrollTop = function(){
+      document.getElementById("menu-content").scrollTop = 0;
+    }
+}])
+
 .controller('inicioCtrl', function($scope) {})
