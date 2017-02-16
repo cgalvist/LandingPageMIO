@@ -45,7 +45,9 @@
             <md-button class="md-icon-button" aria-label="Toggle Menu" ng-click="toggleLeft()" hide-gt-sm="$mdMedia('gt-md')">
                 <md-icon md-font-icon="fa-navicon" class="fa fa-fw"></md-icon>
             </md-button>
-            <h2><span ng-bind="(title || 'Industrias MIO')"></span></h2>
+            <h2 class="md-toolbar-item md-breadcrumb md-headline ng-isolate-scope">
+              <span ng-bind="(title || 'Industrias MIO')"></span>
+            </h2>
             <span flex></span>
             <md-button class="md-icon-button" aria-label="More">
                 <md-icon md-font-icon="fa-ellipsis-v" class="fa fa-fw"></md-icon>
