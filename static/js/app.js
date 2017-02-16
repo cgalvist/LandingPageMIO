@@ -28,7 +28,6 @@ app.config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
             views: {
                 'contenidoMenu': {
                     templateUrl: 'templates/inicio.html',
-                    controller: 'inicioCtrl'
                 }
             }
         })
@@ -53,6 +52,7 @@ app.config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
             views: {
                 'contenidoMenu': {
                     templateUrl: 'templates/catalogo.html',
+                    controller: 'catalogueCtrl'
                 }
             }
         })

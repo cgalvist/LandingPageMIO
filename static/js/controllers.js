@@ -59,7 +59,7 @@ angular.module('app')
 }])
 
 // controlador del footer
-.controller('footerCtrl', ['$scope', '$window', function($scope, $window) {
+.controller('footerCtrl', ['$scope', function($scope) {
 
     $scope.thisYear = new Date().getFullYear();
     var menuContent = document.getElementById("menu-content");
@@ -74,8 +74,30 @@ angular.module('app')
 
     //boton para retornar a la parte de arriba de la pagina
     $scope.scrollTop = function(){
-      menuContent.scrollTop = 0;
+        menuContent.scrollTop = 0;
     }
 }])
 
-.controller('inicioCtrl', function($scope) {})
+// controlador del catalogo
+.controller('catalogueCtrl', ['$scope', function($scope) {
+
+    var urlPhotos = "build/img/photos/";
+    var numberOfPhotos = 7;
+
+    //leer fotos del catalogo
+    $scope.readPhotos = function(){
+        var tiles = [];
+        for (var i = 1; i <= numberOfPhotos; i++) {
+          tiles.push({
+            src: urlPhotos + i + ".jpg",
+            colspan: 1,
+            rowspan: 1,
+            title : i
+          });
+        }
+        return tiles;
+    }
+
+    $scope.colorTiles = $scope.readPhotos();
+
+}])
