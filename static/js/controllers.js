@@ -62,9 +62,19 @@ angular.module('app')
 .controller('footerCtrl', ['$scope', '$window', function($scope, $window) {
 
     $scope.thisYear = new Date().getFullYear();
+    var menuContent = document.getElementById("menu-content");
+    var container = angular.element(menuContent);
+    $scope.isScroll = false;
 
+    //verificar si el usuario ha hecho scroll para mostrar el boton "scroll top"
+    container.on('scroll', function() {
+        $scope.isScroll = menuContent.scrollTop > 100;
+        $scope.$apply();
+    });
+
+    //boton para retornar a la parte de arriba de la pagina
     $scope.scrollTop = function(){
-      document.getElementById("menu-content").scrollTop = 0;
+      menuContent.scrollTop = 0;
     }
 }])
 
