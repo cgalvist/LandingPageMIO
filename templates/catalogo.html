@@ -1,9 +1,10 @@
 <div ng-cloak>
     <md-content layout-padding>
+      <md-content>
         <md-grid-list
             md-cols-gt-md="12" md-cols="3" md-cols-md="8"
             md-row-height-gt-md="1:1" md-row-height="4:3"
-            md-gutter-gt-md="8px" md-gutter-md="6px" md-gutter="4px">
+            md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
             <md-grid-tile
                 ng-repeat="tile in colorTiles"
                 md-colspan-gt-sm="{{tile.colspan}}"
@@ -12,5 +13,14 @@
                 <md-grid-tile-footer><h3>{{tile.title}}</h3></md-grid-tile-footer>
             </md-grid-tile>
         </md-grid-list>
+      </md-content>
+      <md-content layout="column">
+        <md-button
+            class="md-raised md-primary"
+            ng-click="loadMore()"
+            ng-disabled="notMoreImages">
+          Ver más
+        </md-button>
+      </md-content>
     </md-content>
 </div>

@@ -83,21 +83,38 @@ angular.module('app')
 
     var urlPhotos = "build/img/photos/";
     var numberOfPhotos = 7;
+    var photosPerCharge = 6;
+
+    $scope.colorTiles = [];
+    $scope.notMoreImages = false;
+    var counter = 0;
 
     //leer fotos del catalogo
-    $scope.readPhotos = function(){
-        var tiles = [];
-        for (var i = 1; i <= numberOfPhotos; i++) {
-          tiles.push({
+    $scope.readPhotos = function(init, final){
+      for (var i = init; i <= final; i++) {
+        if(i <= numberOfPhotos){
+          $scope.colorTiles.push({
             src: urlPhotos + i + ".jpg",
             colspan: 1,
             rowspan: 1,
             title : i
           });
         }
-        return tiles;
+      }
     }
 
-    $scope.colorTiles = $scope.readPhotos();
+    //cargar mas imagenes
+    $scope.loadMore = function(){
+      if((counter * photosPerCharge) > numberOfPhotos){
+        $scope.notMoreImages = true;
+      } else {
+        var init = (counter * photosPerCharge) + 1,
+            final = (counter + 1) * photosPerCharge;
+        $scope.readPhotos(init,final)
+        counter++;
+      }
+    }
+
+    $scope.loadMore();
 
 }])
