@@ -17,6 +17,13 @@ Después de unos minutos, se debe instalar Gulp en caso de no estarlo. Para esto
 ## Ejecutar
 Con Gulp, puede ejecutar el servidor escribiendo `gulp dev` en la linea de comandos para entornos de desarrollo. También puede solo realizar las tareas de optimización escribiendo `gulp`.
 
+## Otros
+Para evitar problemas con los tiempos de carga de las imágenes, se recomienda reducir su tamaño. Puede ejecutar esta orden a modo de ejemplo en la carpeta "static/images/photos". No olvide ejecutar el comando `gulp` o `gulp dev` luego de hacer los cambios:
+
+```shell
+mogrify -resize 1024 *.jpg
+```
+
 ## Herramientas y módulos utilizados
 
 ### Node
