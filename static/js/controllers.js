@@ -79,7 +79,7 @@ angular.module('app')
 }])
 
 // controlador del catalogo
-.controller('catalogueCtrl', ['$scope', function($scope) {
+.controller('catalogueCtrl', ['$scope', '$mdDialog', function($scope, $mdDialog) {
 
     var urlPhotos = "build/img/photos/";
     var numberOfPhotos = 7;
@@ -117,4 +117,39 @@ angular.module('app')
 
     $scope.loadMore();
 
+    // mostrar dialogo al dar click en imagen
+    $scope.showImageDialog = function(ev,tempTile) {
+      $mdDialog.show({
+        controller: DialogController,
+        templateUrl: 'templates/dialog1.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        locals : {
+          tile: tempTile,
+        }
+      })
+      .then(function(answer) {
+        $scope.status = 'You said the information was "' + answer + '".';
+      }, function() {
+        $scope.status = 'You cancelled the dialog.';
+      });
+    };
+
+    function DialogController($scope, $mdDialog, tile) {
+
+      $scope.tile = tile;
+
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+
+      $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+      };
+    }
 }])

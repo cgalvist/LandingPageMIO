@@ -8,7 +8,9 @@
             <md-grid-tile
                 ng-repeat="tile in colorTiles"
                 md-colspan-gt-sm="{{tile.colspan}}"
-                md-rowspan-gt-sm="{{tile.rowspan}}">
+                md-rowspan-gt-sm="{{tile.rowspan}}"
+                ng-click="showImageDialog($event,tile)"
+                style="cursor:pointer;">
                 <img src="{{tile.src}}" style="height: 100%;" />
                 <md-grid-tile-footer><h3>{{tile.title}}</h3></md-grid-tile-footer>
             </md-grid-tile>

@@ -1,0 +1,30 @@
+<md-dialog aria-label="Image">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Imagen</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()" aria-label="cancel">
+          <md-icon md-font-icon="fa-close" class="fa fa-fw"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <p>Ejemplo</p>
+        <img src="{{tile.src}}" style="width:100%;"/>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <!--
+      <md-button ng-click="answer('close')" aria-label="cancel">
+        Cerrar
+      </md-button>
+      -->
+      <md-button ng-click="cancel()" aria-label="cancel">
+        Cerrar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
